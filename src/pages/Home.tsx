@@ -1,8 +1,4 @@
-import { NitroFormEmbed } from '../components/NitroFormEmbed';
-
 export function Home() {
-  const formId = 'form_1778232748570_45dlhzag';
-
   return (
     <div style={{ padding: '2rem', maxWidth: '800px', margin: '0 auto' }}>
       <header style={{ marginBottom: '2rem', textAlign: 'center' }}>
@@ -21,7 +17,7 @@ export function Home() {
         <p style={{ color: '#666', marginBottom: '2rem', fontSize: '1rem' }}>
           Fill out the form below and we'll get back to you as soon as possible.
         </p>
-        <NitroFormEmbed formId={formId} />
+        <div data-nitro-form="form_1778232748570_45dlhzag"></div>
       </section>
     </div>
   );
