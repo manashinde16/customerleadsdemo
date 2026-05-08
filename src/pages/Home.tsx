@@ -17,7 +17,7 @@ export function Home() {
         <p style={{ color: '#666', marginBottom: '2rem', fontSize: '1rem' }}>
           Fill out the form below and we'll get back to you as soon as possible.
         </p>
-        <div data-nitro-form="form_1778232748570_45dlhzag"></div>
+        <div data-nitro-form="form_1778252662239_tbu619jq"></div>
       </section>
     </div>
   );
