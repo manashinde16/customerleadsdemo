@@ -7,12 +7,28 @@
     Authorization: 'Bearer ' + SUPABASE_KEY,
   };
 
+  function isAllowedDomain(form) {
+    if (!form.allowed_domains || !form.allowed_domains.trim()) return true;
+    var currentHost = window.location.hostname;
+    var allowed = form.allowed_domains.split(',').map(function (d) {
+      return d.trim().replace(/^https?:\/\//, '').replace(/\/$/, '');
+    });
+    return allowed.some(function (d) {
+      return d === currentHost || d === 'localhost';
+    });
+  }
+
   function fetchForm(formId, callback) {
     fetch(SUPABASE_URL + '/forms?id=eq.' + formId + '&status=eq.published&select=*', {
       headers: HEADERS,
     })
       .then(function (r) { return r.json(); })
-      .then(function (data) { callback(null, data && data[0]); })
+      .then(function (data) {
+        var form = data && data[0];
+        if (!form) { callback(null, null); return; }
+        if (!isAllowedDomain(form)) { callback(new Error('Domain not allowed'), null); return; }
+        callback(null, form);
+      })
       .catch(function (err) { callback(err, null); });
   }
 
